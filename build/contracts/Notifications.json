@@ -1,0 +1,2402 @@
+{
+  "contractName": "Notifications",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "idM_",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "C1_",
+          "type": "bytes"
+        },
+        {
+          "internalType": "bytes",
+          "name": "C2_",
+          "type": "bytes"
+        }
+      ],
+      "name": "generateNotification",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idN_",
+          "type": "uint256"
+        }
+      ],
+      "name": "acceptNotification",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idN_",
+          "type": "uint256"
+        }
+      ],
+      "name": "rejectNotification",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"idN_\",\"type\":\"uint256\"}],\"name\":\"acceptNotification\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"idM_\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"C1_\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"C2_\",\"type\":\"bytes\"}],\"name\":\"generateNotification\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"idN_\",\"type\":\"uint256\"}],\"name\":\"rejectNotification\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Smart Contract para almacenar las notificaciones generadas\",\"methods\":{},\"title\":\"Notifications\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Notifications.sol\":\"Notifications\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Notifications.sol\":{\"keccak256\":\"0x5321799fdb838972ab22ef755446365a362074dbb7bc05f0d0d9d00560de5694\",\"urls\":[\"bzz-raw://32eb605464d2b4baa0921bbe173e3bd2352dcb51145ebc68d69d1109b181b9b0\",\"dweb:/ipfs/QmX7Dn3xgoiobuer9qNw4XsqUnPsh1zhrn5DKSau8qZzHy\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008081905550610497806100276000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806317ef17f0146100465780638d9fa45614610074578063b296b40f146101f0575b600080fd5b6100726004803603602081101561005c57600080fd5b810190808035906020019092919050505061021e565b005b6101ee6004803603608081101561008a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156100d157600080fd5b8201836020820111156100e357600080fd5b8035906020019184600183028401116401000000008311171561010557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561016857600080fd5b82018360208201111561017a57600080fd5b8035906020019184600183028401116401000000008311171561019c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061024f565b005b61021c6004803603602081101561020657600080fd5b810190808035906020019092919050505061038c565b005b600180600083815260200190815260200160002060040160016101000a81548160ff02191690831515021790555050565b6040518060c001604052808573ffffffffffffffffffffffffffffffffffffffff16815260200184815260200183815260200182815260200160001515815260200160001515815250600160008054815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020190805190602001906103199291906103bd565b5060608201518160030190805190602001906103369291906103bd565b5060808201518160040160006101000a81548160ff02191690831515021790555060a08201518160040160016101000a81548160ff02191690831515021790555090505060016000540160008190555050505050565b600180600083815260200190815260200160002060040160006101000a81548160ff02191690831515021790555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103fe57805160ff191683800117855561042c565b8280016001018555821561042c579182015b8281111561042b578251825591602001919060010190610410565b5b509050610439919061043d565b5090565b61045f91905b8082111561045b576000816000905550600101610443565b5090565b9056fea265627a7a723158203242351f52eee1a381fd920d0052ad8c582037fe3b8fc11ce5b427802eacc9a464736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806317ef17f0146100465780638d9fa45614610074578063b296b40f146101f0575b600080fd5b6100726004803603602081101561005c57600080fd5b810190808035906020019092919050505061021e565b005b6101ee6004803603608081101561008a57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803590602001906401000000008111156100d157600080fd5b8201836020820111156100e357600080fd5b8035906020019184600183028401116401000000008311171561010557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561016857600080fd5b82018360208201111561017a57600080fd5b8035906020019184600183028401116401000000008311171561019c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f82011690508083019250505050505050919291929050505061024f565b005b61021c6004803603602081101561020657600080fd5b810190808035906020019092919050505061038c565b005b600180600083815260200190815260200160002060040160016101000a81548160ff02191690831515021790555050565b6040518060c001604052808573ffffffffffffffffffffffffffffffffffffffff16815260200184815260200183815260200182815260200160001515815260200160001515815250600160008054815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020190805190602001906103199291906103bd565b5060608201518160030190805190602001906103369291906103bd565b5060808201518160040160006101000a81548160ff02191690831515021790555060a08201518160040160016101000a81548160ff02191690831515021790555090505060016000540160008190555050505050565b600180600083815260200190815260200160002060040160006101000a81548160ff02191690831515021790555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106103fe57805160ff191683800117855561042c565b8280016001018555821561042c579182015b8281111561042b578251825591602001919060010190610410565b5b509050610439919061043d565b5090565b61045f91905b8082111561045b576000816000905550600101610443565b5090565b9056fea265627a7a723158203242351f52eee1a381fd920d0052ad8c582037fe3b8fc11ce5b427802eacc9a464736f6c63430005100032",
+  "sourceMap": "171:1259:2:-;;;238:59;8:9:-1;5:2;;;30:1;27;20:12;5:2;238:59:2;289:1;268:18;:22;;;;171:1259;;;;;;",
+  "deployedSourceMap": "171:1259:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;171:1259:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1338:89;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1338:89:2;;;;;;;;;;;;;;;;;:::i;:::-;;895:257;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;895:257:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;895:257:2;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;895:257:2;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;895:257:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;895:257:2;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;895:257:2;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;895:257:2;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;895:257:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;895:257:2;;;;;;;;;;;;;;;:::i;:::-;;1200:89;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1200:89:2;;;;;;;;;;;;;;;;;:::i;:::-;;1338;1416:4;1393:5;:11;1399:4;1393:11;;;;;;;;;;;:20;;;:27;;;;;;;;;;;;;;;;;;1338:89;:::o;895:257::-;1039:51;;;;;;;;1052:12;1039:51;;;;;;1065:4;1039:51;;;;1070:3;1039:51;;;;1074:3;1039:51;;;;1078:5;1039:51;;;;;;1084:5;1039:51;;;;;1011:5;:25;1017:18;;1011:25;;;;;;;;;;;:79;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1143:1;1122:18;;:22;1101:18;:43;;;;895:257;;;;:::o;1200:89::-;1278:4;1255:5;:11;1261:4;1255:11;;;;;;;;;;;:20;;;:27;;;;;;;;;;;;;;;;;;1200:89;:::o;171:1259::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\npragma solidity >=0.5.13 <0.9.0;\n\n/** \n * @title Notifications\n * @dev Smart Contract para almacenar las notificaciones generadas\n */\ncontract Notifications{\n\n    uint private totalNotifications;\n\n    constructor() public{\n        totalNotifications = 0;\n    }\n\n    struct Notification{\n\n        address userAddress; //Dirección del ususario\n        uint idM; // Identificador de la medicina\n        bytes C1; // Primera parte de la notificación encriptada\n        bytes C2; // Segunda parte de la notificación encriptada\n        bool accepted; // Booleanos que controlan si la notificación se ha rechazado o aceptado\n        bool rejected;\n    }\n\n    // Mapping para la lista acceder a la notificación correspondiente a idN\n    mapping(uint => Notification) private listN;\n\n\n    //Funcion para crear notificaciones sin el proceso de cifrado de ZKP\n    function generateNotification(address userAddress_, uint idM_, bytes memory C1_, bytes memory C2_) public{\n\n        listN[totalNotifications] = Notification(userAddress_,idM_,C1_,C2_,false,false);\n\n        totalNotifications = totalNotifications + 1;\n\n    }\n\n    //Funcion para aceptar notificaciones\n    function acceptNotification(uint idN_) public{\n        listN[idN_].accepted = true;\n    }\n\n    //Funcion para rechazar notificaciones\n    function rejectNotification(uint idN_) public{\n        listN[idN_].rejected = true;\n    }\n\n}",
+  "sourcePath": "C:\\Users\\Usuario\\Desktop\\DApp-Victor\\contracts\\Notifications.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Notifications.sol",
+    "exportedSymbols": {
+      "Notifications": [
+        387
+      ]
+    },
+    "id": 388,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 302,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".13",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "37:32:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Notifications\n@dev Smart Contract para almacenar las notificaciones generadas",
+        "fullyImplemented": true,
+        "id": 387,
+        "linearizedBaseContracts": [
+          387
+        ],
+        "name": "Notifications",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 304,
+            "name": "totalNotifications",
+            "nodeType": "VariableDeclaration",
+            "scope": 387,
+            "src": "200:31:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 303,
+              "name": "uint",
+              "nodeType": "ElementaryTypeName",
+              "src": "200:4:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 311,
+              "nodeType": "Block",
+              "src": "258:39:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 309,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 307,
+                      "name": "totalNotifications",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 304,
+                      "src": "268:18:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 308,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "289:1:2",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "268:22:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 310,
+                  "nodeType": "ExpressionStatement",
+                  "src": "268:22:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 312,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 305,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "249:2:2"
+            },
+            "returnParameters": {
+              "id": 306,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "258:0:2"
+            },
+            "scope": 387,
+            "src": "238:59:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Notifications.Notification",
+            "id": 325,
+            "members": [
+              {
+                "constant": false,
+                "id": 314,
+                "name": "userAddress",
+                "nodeType": "VariableDeclaration",
+                "scope": 325,
+                "src": "333:19:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 313,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "333:7:2",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 316,
+                "name": "idM",
+                "nodeType": "VariableDeclaration",
+                "scope": 325,
+                "src": "388:8:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 315,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "388:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 318,
+                "name": "C1",
+                "nodeType": "VariableDeclaration",
+                "scope": 325,
+                "src": "438:8:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 317,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "438:5:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 320,
+                "name": "C2",
+                "nodeType": "VariableDeclaration",
+                "scope": 325,
+                "src": "504:8:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes_storage_ptr",
+                  "typeString": "bytes"
+                },
+                "typeName": {
+                  "id": 319,
+                  "name": "bytes",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "504:5:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_storage_ptr",
+                    "typeString": "bytes"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 322,
+                "name": "accepted",
+                "nodeType": "VariableDeclaration",
+                "scope": 325,
+                "src": "570:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 321,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "570:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 324,
+                "name": "rejected",
+                "nodeType": "VariableDeclaration",
+                "scope": 325,
+                "src": "667:13:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 323,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "667:4:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Notification",
+            "nodeType": "StructDefinition",
+            "scope": 387,
+            "src": "303:384:2",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 329,
+            "name": "listN",
+            "nodeType": "VariableDeclaration",
+            "scope": 387,
+            "src": "771:43:2",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$325_storage_$",
+              "typeString": "mapping(uint256 => struct Notifications.Notification)"
+            },
+            "typeName": {
+              "id": 328,
+              "keyType": {
+                "id": 326,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "779:4:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "771:29:2",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$325_storage_$",
+                "typeString": "mapping(uint256 => struct Notifications.Notification)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 327,
+                "name": "Notification",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 325,
+                "src": "787:12:2",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Notification_$325_storage_ptr",
+                  "typeString": "struct Notifications.Notification"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 359,
+              "nodeType": "Block",
+              "src": "1000:152:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 351,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 340,
+                        "name": "listN",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 329,
+                        "src": "1011:5:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$325_storage_$",
+                          "typeString": "mapping(uint256 => struct Notifications.Notification storage ref)"
+                        }
+                      },
+                      "id": 342,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 341,
+                        "name": "totalNotifications",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 304,
+                        "src": "1017:18:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1011:25:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Notification_$325_storage",
+                        "typeString": "struct Notifications.Notification storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "id": 344,
+                          "name": "userAddress_",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 331,
+                          "src": "1052:12:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 345,
+                          "name": "idM_",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 333,
+                          "src": "1065:4:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 346,
+                          "name": "C1_",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 335,
+                          "src": "1070:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 347,
+                          "name": "C2_",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 337,
+                          "src": "1074:3:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "66616c7365",
+                          "id": 348,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1078:5:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "false"
+                        },
+                        {
+                          "argumentTypes": null,
+                          "hexValue": "66616c7365",
+                          "id": 349,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "bool",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "1084:5:2",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          "value": "false"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          },
+                          {
+                            "typeIdentifier": "t_bytes_memory_ptr",
+                            "typeString": "bytes memory"
+                          },
+                          {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          },
+                          {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        ],
+                        "id": 343,
+                        "name": "Notification",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 325,
+                        "src": "1039:12:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_Notification_$325_storage_ptr_$",
+                          "typeString": "type(struct Notifications.Notification storage pointer)"
+                        }
+                      },
+                      "id": 350,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1039:51:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Notification_$325_memory",
+                        "typeString": "struct Notifications.Notification memory"
+                      }
+                    },
+                    "src": "1011:79:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Notification_$325_storage",
+                      "typeString": "struct Notifications.Notification storage ref"
+                    }
+                  },
+                  "id": 352,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1011:79:2"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 357,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 353,
+                      "name": "totalNotifications",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 304,
+                      "src": "1101:18:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 356,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 354,
+                        "name": "totalNotifications",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 304,
+                        "src": "1122:18:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "+",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 355,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1143:1:2",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      "src": "1122:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1101:43:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 358,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1101:43:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 360,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "generateNotification",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 338,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 331,
+                  "name": "userAddress_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 360,
+                  "src": "925:20:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 330,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "925:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 333,
+                  "name": "idM_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 360,
+                  "src": "947:9:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 332,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "947:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 335,
+                  "name": "C1_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 360,
+                  "src": "958:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 334,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "958:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 337,
+                  "name": "C2_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 360,
+                  "src": "976:16:2",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 336,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "976:5:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "924:69:2"
+            },
+            "returnParameters": {
+              "id": 339,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1000:0:2"
+            },
+            "scope": 387,
+            "src": "895:257:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 372,
+              "nodeType": "Block",
+              "src": "1245:44:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 370,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 365,
+                          "name": "listN",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 329,
+                          "src": "1255:5:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$325_storage_$",
+                            "typeString": "mapping(uint256 => struct Notifications.Notification storage ref)"
+                          }
+                        },
+                        "id": 367,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 366,
+                          "name": "idN_",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 362,
+                          "src": "1261:4:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1255:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Notification_$325_storage",
+                          "typeString": "struct Notifications.Notification storage ref"
+                        }
+                      },
+                      "id": 368,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "accepted",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 322,
+                      "src": "1255:20:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "74727565",
+                      "id": 369,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1278:4:2",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1255:27:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 371,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1255:27:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 373,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "acceptNotification",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 363,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 362,
+                  "name": "idN_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 373,
+                  "src": "1228:9:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 361,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1228:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1227:11:2"
+            },
+            "returnParameters": {
+              "id": 364,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1245:0:2"
+            },
+            "scope": 387,
+            "src": "1200:89:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 385,
+              "nodeType": "Block",
+              "src": "1383:44:2",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 383,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 378,
+                          "name": "listN",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 329,
+                          "src": "1393:5:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Notification_$325_storage_$",
+                            "typeString": "mapping(uint256 => struct Notifications.Notification storage ref)"
+                          }
+                        },
+                        "id": 380,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 379,
+                          "name": "idN_",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 375,
+                          "src": "1399:4:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "1393:11:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Notification_$325_storage",
+                          "typeString": "struct Notifications.Notification storage ref"
+                        }
+                      },
+                      "id": 381,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "memberName": "rejected",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 324,
+                      "src": "1393:20:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "74727565",
+                      "id": 382,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "bool",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "1416:4:2",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "value": "true"
+                    },
+                    "src": "1393:27:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 384,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1393:27:2"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 386,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rejectNotification",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 376,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 375,
+                  "name": "idN_",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 386,
+                  "src": "1366:9:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 374,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1366:4:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1365:11:2"
+            },
+            "returnParameters": {
+              "id": 377,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1383:0:2"
+            },
+            "scope": 387,
+            "src": "1338:89:2",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 388,
+        "src": "171:1259:2"
+      }
+    ],
+    "src": "37:1393:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/Notifications.sol",
+      "exportedSymbols": {
+        "Notifications": [
+          387
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".13",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 302,
+        "name": "PragmaDirective",
+        "src": "37:32:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": "@title Notifications\n@dev Smart Contract para almacenar las notificaciones generadas",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            387
+          ],
+          "name": "Notifications",
+          "scope": 388
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "totalNotifications",
+              "scope": 387,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 303,
+                "name": "ElementaryTypeName",
+                "src": "200:4:2"
+              }
+            ],
+            "id": 304,
+            "name": "VariableDeclaration",
+            "src": "200:31:2"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 387,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 305,
+                "name": "ParameterList",
+                "src": "249:2:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 306,
+                "name": "ParameterList",
+                "src": "258:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 304,
+                              "type": "uint256",
+                              "value": "totalNotifications"
+                            },
+                            "id": 307,
+                            "name": "Identifier",
+                            "src": "268:18:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 308,
+                            "name": "Literal",
+                            "src": "289:1:2"
+                          }
+                        ],
+                        "id": 309,
+                        "name": "Assignment",
+                        "src": "268:22:2"
+                      }
+                    ],
+                    "id": 310,
+                    "name": "ExpressionStatement",
+                    "src": "268:22:2"
+                  }
+                ],
+                "id": 311,
+                "name": "Block",
+                "src": "258:39:2"
+              }
+            ],
+            "id": 312,
+            "name": "FunctionDefinition",
+            "src": "238:59:2"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Notifications.Notification",
+              "name": "Notification",
+              "scope": 387,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "userAddress",
+                  "scope": 325,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "stateMutability": "nonpayable",
+                      "type": "address"
+                    },
+                    "id": 313,
+                    "name": "ElementaryTypeName",
+                    "src": "333:7:2"
+                  }
+                ],
+                "id": 314,
+                "name": "VariableDeclaration",
+                "src": "333:19:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "idM",
+                  "scope": 325,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 315,
+                    "name": "ElementaryTypeName",
+                    "src": "388:4:2"
+                  }
+                ],
+                "id": 316,
+                "name": "VariableDeclaration",
+                "src": "388:8:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "C1",
+                  "scope": 325,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes",
+                      "type": "bytes"
+                    },
+                    "id": 317,
+                    "name": "ElementaryTypeName",
+                    "src": "438:5:2"
+                  }
+                ],
+                "id": 318,
+                "name": "VariableDeclaration",
+                "src": "438:8:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "C2",
+                  "scope": 325,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bytes",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bytes",
+                      "type": "bytes"
+                    },
+                    "id": 319,
+                    "name": "ElementaryTypeName",
+                    "src": "504:5:2"
+                  }
+                ],
+                "id": 320,
+                "name": "VariableDeclaration",
+                "src": "504:8:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "accepted",
+                  "scope": 325,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 321,
+                    "name": "ElementaryTypeName",
+                    "src": "570:4:2"
+                  }
+                ],
+                "id": 322,
+                "name": "VariableDeclaration",
+                "src": "570:13:2"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "rejected",
+                  "scope": 325,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "bool",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "bool",
+                      "type": "bool"
+                    },
+                    "id": 323,
+                    "name": "ElementaryTypeName",
+                    "src": "667:4:2"
+                  }
+                ],
+                "id": 324,
+                "name": "VariableDeclaration",
+                "src": "667:13:2"
+              }
+            ],
+            "id": 325,
+            "name": "StructDefinition",
+            "src": "303:384:2"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "listN",
+              "scope": 387,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => struct Notifications.Notification)",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => struct Notifications.Notification)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 326,
+                    "name": "ElementaryTypeName",
+                    "src": "779:4:2"
+                  },
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Notification",
+                      "referencedDeclaration": 325,
+                      "type": "struct Notifications.Notification"
+                    },
+                    "id": 327,
+                    "name": "UserDefinedTypeName",
+                    "src": "787:12:2"
+                  }
+                ],
+                "id": 328,
+                "name": "Mapping",
+                "src": "771:29:2"
+              }
+            ],
+            "id": 329,
+            "name": "VariableDeclaration",
+            "src": "771:43:2"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "generateNotification",
+              "scope": 387,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "userAddress_",
+                      "scope": 360,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 330,
+                        "name": "ElementaryTypeName",
+                        "src": "925:7:2"
+                      }
+                    ],
+                    "id": 331,
+                    "name": "VariableDeclaration",
+                    "src": "925:20:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idM_",
+                      "scope": 360,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 332,
+                        "name": "ElementaryTypeName",
+                        "src": "947:4:2"
+                      }
+                    ],
+                    "id": 333,
+                    "name": "VariableDeclaration",
+                    "src": "947:9:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "C1_",
+                      "scope": 360,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 334,
+                        "name": "ElementaryTypeName",
+                        "src": "958:5:2"
+                      }
+                    ],
+                    "id": 335,
+                    "name": "VariableDeclaration",
+                    "src": "958:16:2"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "C2_",
+                      "scope": 360,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "bytes",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 336,
+                        "name": "ElementaryTypeName",
+                        "src": "976:5:2"
+                      }
+                    ],
+                    "id": 337,
+                    "name": "VariableDeclaration",
+                    "src": "976:16:2"
+                  }
+                ],
+                "id": 338,
+                "name": "ParameterList",
+                "src": "924:69:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 339,
+                "name": "ParameterList",
+                "src": "1000:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Notifications.Notification storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Notifications.Notification storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 329,
+                                  "type": "mapping(uint256 => struct Notifications.Notification storage ref)",
+                                  "value": "listN"
+                                },
+                                "id": 340,
+                                "name": "Identifier",
+                                "src": "1011:5:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 304,
+                                  "type": "uint256",
+                                  "value": "totalNotifications"
+                                },
+                                "id": 341,
+                                "name": "Identifier",
+                                "src": "1017:18:2"
+                              }
+                            ],
+                            "id": 342,
+                            "name": "IndexAccess",
+                            "src": "1011:25:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "struct Notifications.Notification memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address",
+                                      "typeString": "address"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_bytes_memory_ptr",
+                                      "typeString": "bytes memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_bytes_memory_ptr",
+                                      "typeString": "bytes memory"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_bool",
+                                      "typeString": "bool"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_bool",
+                                      "typeString": "bool"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 325,
+                                  "type": "type(struct Notifications.Notification storage pointer)",
+                                  "value": "Notification"
+                                },
+                                "id": 343,
+                                "name": "Identifier",
+                                "src": "1039:12:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 331,
+                                  "type": "address",
+                                  "value": "userAddress_"
+                                },
+                                "id": 344,
+                                "name": "Identifier",
+                                "src": "1052:12:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 333,
+                                  "type": "uint256",
+                                  "value": "idM_"
+                                },
+                                "id": 345,
+                                "name": "Identifier",
+                                "src": "1065:4:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 335,
+                                  "type": "bytes memory",
+                                  "value": "C1_"
+                                },
+                                "id": 346,
+                                "name": "Identifier",
+                                "src": "1070:3:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 337,
+                                  "type": "bytes memory",
+                                  "value": "C2_"
+                                },
+                                "id": 347,
+                                "name": "Identifier",
+                                "src": "1074:3:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "66616c7365",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "false"
+                                },
+                                "id": 348,
+                                "name": "Literal",
+                                "src": "1078:5:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "66616c7365",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "bool",
+                                  "type": "bool",
+                                  "value": "false"
+                                },
+                                "id": 349,
+                                "name": "Literal",
+                                "src": "1084:5:2"
+                              }
+                            ],
+                            "id": 350,
+                            "name": "FunctionCall",
+                            "src": "1039:51:2"
+                          }
+                        ],
+                        "id": 351,
+                        "name": "Assignment",
+                        "src": "1011:79:2"
+                      }
+                    ],
+                    "id": 352,
+                    "name": "ExpressionStatement",
+                    "src": "1011:79:2"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 304,
+                              "type": "uint256",
+                              "value": "totalNotifications"
+                            },
+                            "id": 353,
+                            "name": "Identifier",
+                            "src": "1101:18:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "+",
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 304,
+                                  "type": "uint256",
+                                  "value": "totalNotifications"
+                                },
+                                "id": 354,
+                                "name": "Identifier",
+                                "src": "1122:18:2"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "31",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "number",
+                                  "type": "int_const 1",
+                                  "value": "1"
+                                },
+                                "id": 355,
+                                "name": "Literal",
+                                "src": "1143:1:2"
+                              }
+                            ],
+                            "id": 356,
+                            "name": "BinaryOperation",
+                            "src": "1122:22:2"
+                          }
+                        ],
+                        "id": 357,
+                        "name": "Assignment",
+                        "src": "1101:43:2"
+                      }
+                    ],
+                    "id": 358,
+                    "name": "ExpressionStatement",
+                    "src": "1101:43:2"
+                  }
+                ],
+                "id": 359,
+                "name": "Block",
+                "src": "1000:152:2"
+              }
+            ],
+            "id": 360,
+            "name": "FunctionDefinition",
+            "src": "895:257:2"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "acceptNotification",
+              "scope": 387,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idN_",
+                      "scope": 373,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 361,
+                        "name": "ElementaryTypeName",
+                        "src": "1228:4:2"
+                      }
+                    ],
+                    "id": 362,
+                    "name": "VariableDeclaration",
+                    "src": "1228:9:2"
+                  }
+                ],
+                "id": 363,
+                "name": "ParameterList",
+                "src": "1227:11:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 364,
+                "name": "ParameterList",
+                "src": "1245:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "accepted",
+                              "referencedDeclaration": 322,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notifications.Notification storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 329,
+                                      "type": "mapping(uint256 => struct Notifications.Notification storage ref)",
+                                      "value": "listN"
+                                    },
+                                    "id": 365,
+                                    "name": "Identifier",
+                                    "src": "1255:5:2"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 362,
+                                      "type": "uint256",
+                                      "value": "idN_"
+                                    },
+                                    "id": 366,
+                                    "name": "Identifier",
+                                    "src": "1261:4:2"
+                                  }
+                                ],
+                                "id": 367,
+                                "name": "IndexAccess",
+                                "src": "1255:11:2"
+                              }
+                            ],
+                            "id": 368,
+                            "name": "MemberAccess",
+                            "src": "1255:20:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "74727565",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "bool",
+                              "type": "bool",
+                              "value": "true"
+                            },
+                            "id": 369,
+                            "name": "Literal",
+                            "src": "1278:4:2"
+                          }
+                        ],
+                        "id": 370,
+                        "name": "Assignment",
+                        "src": "1255:27:2"
+                      }
+                    ],
+                    "id": 371,
+                    "name": "ExpressionStatement",
+                    "src": "1255:27:2"
+                  }
+                ],
+                "id": 372,
+                "name": "Block",
+                "src": "1245:44:2"
+              }
+            ],
+            "id": 373,
+            "name": "FunctionDefinition",
+            "src": "1200:89:2"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "rejectNotification",
+              "scope": 387,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "idN_",
+                      "scope": 386,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 374,
+                        "name": "ElementaryTypeName",
+                        "src": "1366:4:2"
+                      }
+                    ],
+                    "id": 375,
+                    "name": "VariableDeclaration",
+                    "src": "1366:9:2"
+                  }
+                ],
+                "id": 376,
+                "name": "ParameterList",
+                "src": "1365:11:2"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 377,
+                "name": "ParameterList",
+                "src": "1383:0:2"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "member_name": "rejected",
+                              "referencedDeclaration": 324,
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Notifications.Notification storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 329,
+                                      "type": "mapping(uint256 => struct Notifications.Notification storage ref)",
+                                      "value": "listN"
+                                    },
+                                    "id": 378,
+                                    "name": "Identifier",
+                                    "src": "1393:5:2"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 375,
+                                      "type": "uint256",
+                                      "value": "idN_"
+                                    },
+                                    "id": 379,
+                                    "name": "Identifier",
+                                    "src": "1399:4:2"
+                                  }
+                                ],
+                                "id": 380,
+                                "name": "IndexAccess",
+                                "src": "1393:11:2"
+                              }
+                            ],
+                            "id": 381,
+                            "name": "MemberAccess",
+                            "src": "1393:20:2"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "74727565",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "bool",
+                              "type": "bool",
+                              "value": "true"
+                            },
+                            "id": 382,
+                            "name": "Literal",
+                            "src": "1416:4:2"
+                          }
+                        ],
+                        "id": 383,
+                        "name": "Assignment",
+                        "src": "1393:27:2"
+                      }
+                    ],
+                    "id": 384,
+                    "name": "ExpressionStatement",
+                    "src": "1393:27:2"
+                  }
+                ],
+                "id": 385,
+                "name": "Block",
+                "src": "1383:44:2"
+              }
+            ],
+            "id": 386,
+            "name": "FunctionDefinition",
+            "src": "1338:89:2"
+          }
+        ],
+        "id": 387,
+        "name": "ContractDefinition",
+        "src": "171:1259:2"
+      }
+    ],
+    "id": 388,
+    "name": "SourceUnit",
+    "src": "37:1393:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xf47DBdAc2B4F0Dc41e467a32F7FC7966C284d505",
+      "transactionHash": "0x48ca233957967100484039628901bbc33d6f481dd5e56ee5441927d624817aef"
+    }
+  },
+  "schemaVersion": "3.4.8",
+  "updatedAt": "2024-02-24T21:00:49.547Z",
+  "devdoc": {
+    "details": "Smart Contract para almacenar las notificaciones generadas",
+    "methods": {},
+    "title": "Notifications"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

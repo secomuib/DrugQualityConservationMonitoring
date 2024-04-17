@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Sensores asociados a gateway</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="is-preload">
+
+    <!-- Header -->
+      <header id="header">
+        <div class="content" id="cosas">
+          <form action="index.html">
+              <input type="submit" value="Inicio" />
+          </form>
+          <h1 id="title"><a href="#"></a></h1>
+          &nbsp;
+          <div class="container" style="width: 1550px;">
+            <hr/>
+            <br/>
+            <div id="loader">
+              <p class="text-center">Loading...</p>
+            </div>
+            <div id="content" style="display: none;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center" style="font-size: xx-large;">ID</th>
+                    <th scope="col" class="text-center" style="font-size: xx-large;">Date</th>
+                    <th scope="col" class="text-center" style="font-size: xx-large;">Warning Type</th>
+                    <th scope="col" class="text-center" style="font-size: xx-large;">Sensor Certificate ID</th>
+                    <th scope="col" class="text-center" style="font-size: xx-large;">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="warninglist">
+                  
+                </tbody>
+              </table>
+              <hr/>
+              <p id="accountAddress" class="text-center"></p>
+            </div>
+          </div>
+      </header>
+
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/redirects/warningList.js"></script>
+  </body>
+</html>

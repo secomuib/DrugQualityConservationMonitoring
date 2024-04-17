@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>DApp</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<div class="content">
+					<h1><a href="#">Monitorización de la calidad de conservación de las medicinas</a></h1>
+					<ul class="actions">
+						<li><button class="button" id="disps" style="font-size: large;">Dispositivos</button></li>
+						<li><button class="button" id="certs" style="font-size: large;">Certificados</button></li>
+						<li><button class="button" id="meds" style="font-size: large;">Medicinas</button></li>
+						<li><button class="button" id="notifs" style="font-size: large;">Alarmas</button></li>
+				</ul>
+					<div class="actions" id="dispositivos" style="display: none;">
+						<li><a href="dispositivosAddSensor.html" class="button ">Añadir sensor</a></li>
+						<br>
+						<li><a href="dispositivosAddGateway.html" class="button ">Añadir gateway</a></li>
+						<br>
+						<li><a href="dispositivosGatewaysSensorList.html" class="button ">Lista de sensores asociados a un gateway</a></li>
+						<br>
+						<li><a href="dispositivosGatewayInfo.html" class="button ">Información de un gateway</a></li>
+						<br>
+						<li><a href="dispositivosSensorInfo.html" class="button ">Información de un sensor</a></li>
+					</div>
+					<div class="actions" id="certificados" style="display: none;">
+						<li><a href="certificadosAddSensorCert.html" class="button ">Añadir certificado de sensor</a></li>
+						<br>
+						<li><a href="certificadosAddGatewayCert.html" class="button ">Añadir certificado de gateway</a></li>
+						<br>
+						<li><a href="certificadosSensorCert.html" class="button ">Comprobar certificado de sensor</a></li>
+						<br>
+						<li><a href="certificadosGatewayCert.html" class="button ">Comprobar certificado de gateway</a></li>
+					</div>
+					<div class="actions" id="medicinas" style="display: none;">
+						<li><a href="medicinasAddMed.html" class="button ">Añadir medicina</a></li>
+						<br>
+						<li><a href="medicinasMedList.html" class="button ">Lista de medicinas</a></li>
+					</div>
+					<div class="actions" id="notificaciones" style="display: none;">
+						<li><a href="notificacionesAddWarning.html" class="button ">Añadir alarma</a></li>
+						<br>
+						<li><a href="notificacionesUpdateWarning.html" class="button ">Actualizar alarma</a></li>
+						<br>
+						<li><a href="notificacionesWarningList.html" class="button ">Lista de alarmas de un sensor</a></li>
+						<br>
+						<li><a href="notificacionesTimePeriodWarningList.html" class="button ">Lista de alarmas de un sensor en un periodo de tiempo</a></li>
+					</div>
+				</div>
+			</header>
+			
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener('DOMContentLoaded', function() {
+				  const disps = document.getElementById('disps');
+				  const dispositivos = document.getElementById('dispositivos');
+				  const certs = document.getElementById('certs');
+				  const certificados = document.getElementById('certificados');
+				  const meds = document.getElementById('meds');
+				  const medicinas = document.getElementById('medicinas');
+				  const notifs = document.getElementById('notifs');
+				  const notificaciones = document.getElementById('notificaciones');
+
+				  disps.addEventListener('click', function() {
+				    dispositivos.style.display = 'block';
+				    certificados.style.display = 'none';
+				    medicinas.style.display = 'none';
+				    notificaciones.style.display = 'none';
+				  });
+				  certs.addEventListener('click', function() {
+				    dispositivos.style.display = 'none';
+				    certificados.style.display = 'block';
+				    medicinas.style.display = 'none';
+				    notificaciones.style.display = 'none';
+				  });
+				  meds.addEventListener('click', function() {
+				    dispositivos.style.display = 'none';
+				    certificados.style.display = 'none';
+				    medicinas.style.display = 'block';
+				    notificaciones.style.display = 'none';
+				  });
+				  notifs.addEventListener('click', function() {
+				    dispositivos.style.display = 'none';
+				    certificados.style.display = 'none';
+				    medicinas.style.display = 'none';
+				    notificaciones.style.display = 'block';
+				  });
+				});
+			</script>
+	</body>
+</html>

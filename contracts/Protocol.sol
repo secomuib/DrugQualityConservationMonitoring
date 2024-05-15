@@ -13,7 +13,7 @@ import "./Medicines.sol";
 import "./Notifications.sol";
 
 
-contract Protocol public{
+contract Protocol {
 
     //Variables utilizadas
 
@@ -81,8 +81,8 @@ contract Protocol public{
         bool closed; // Estado de la alarma
         uint16 duration; // Duración de la exposición de la medicina al estado anómalo
         int16[] vAvg; // Media de los valores tomados durante el tiempo de estado anómalo
-        int16 maxTemp; //Valores máximo y mínimo de temperatura utilizados para realizar pruebas con el contrato. El resto de parámetros se omiten para facilitar las pruebas
-        int16 minTemp; 
+        int16[] vMax; //Valores máximo y mínimo tomados durante el tiempo de estado anómalo
+        int16[] vMin; 
     }
 
 
@@ -106,7 +106,7 @@ contract Protocol public{
 
     //Función para añadir un sensor a la lista de sensores registrados
     function sensorRegistration(uint16 idS_,bytes6 mac_,bytes32 pubKeyL_,bytes32 pubKeyR_) public {
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listS[idS_].registered == false, "Este ID ya esta registrado para un sensor.");
         Sensor memory newSensor = Sensor(true,mac_,pubKeyL_,pubKeyR_,0); //Se crea un objeto temporal creando la estructura del sensor
         listS[idS_] = newSensor; //Se añade al mapeo con el índice deseado
@@ -114,7 +114,7 @@ contract Protocol public{
 
     //Función para añadir un sensor a la lista de sensores registrados
     function gatewayRegistration(uint16 idG_,bytes8 devEui_,bytes6 mac_,bytes32 pubKeyL_,bytes32 pubKeyR_) public {
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listG[idG_].registered == false, "Este ID ya esta registrado para un gateway.");
         Gateway memory newGateway = Gateway(true,devEui_,mac_,pubKeyL_,pubKeyR_,0); //Se crea un objeto temporal creando la estructura del gateway
         listG[idG_] = newGateway; //Se añade al mapeo con el índice deseado
@@ -124,7 +124,7 @@ contract Protocol public{
 
     //Función para crear un certificado de gateway
     function gatewayCertificateCreation(uint16 idG_,address userAddress_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listG[idG_].registered,"No existe el gateway al que se le desea crear el certificado."); // Requisito: que el gateway esté registrado en la lista de gateways
         require(listG[idG_].gatewayCertificateID == 0, "Ya existe certificado de este gateway. Revocalo para poder anyadir uno nuevo."); // Se necesita que no exista ya un certificado existente
         revokeGatewayCertificate(idG_); // Se revocan los certificados del gateway junto con todos los certificados anteriores de los sensores
@@ -136,7 +136,7 @@ contract Protocol public{
 
     //Función para crear un certificado de sensor
     function sensorCertificateCreation(uint16 idS_,uint16 idG_,uint idM_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listS[idS_].registered,"No existe el sensor al que se le desea crear el certificado."); // Requisitos: que el sensor esté registrado en la lista de sensores
         require(listS[idS_].sensorCertificateID == 0, "Ya existe certificado de este sensor. Revocalo para poder anyadir uno nuevo.");
         require(checkGatewayCertificateStatus(idG_),"No existe un certificado valido del gateway al que se desea asociar el sensor."); // que exista certificado del gateway al que se quiere asociar el sensor
@@ -150,7 +150,7 @@ contract Protocol public{
 
     //Función para actualizar la fecha de expiración de un gateway
     function gatewayCertificateUpdate(uint16 idGC_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listGC[idGC_].expiryDate > block.timestamp, "El certificado del gateway ha caducado.");
         require(!listGC[idGC_].revoked,"El certificado del gateway esta revocado.");
 
@@ -159,7 +159,7 @@ contract Protocol public{
 
     //Función para actualizar la fecha de expiración de un sensor
     function sensorCertificateUpdate(uint16 idSC_, uint16 idGC_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listGC[idGC_].expiryDate > block.timestamp, "El certificado del gateway esta caducado.");
         require(!listGC[idGC_].revoked,"El certificado del gateway esta revocado.");
         require(listSC[idSC_].expiryDate > block.timestamp, "El certificado del sensor ha caducado.");
@@ -171,7 +171,7 @@ contract Protocol public{
 
     //Función para saber el idGC del certificado vigente del gateway de entrada
     function getGatewayCertificateID(uint16 idG_) public view returns (uint16 idGC_){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         uint16 aux = listG[idG_].gatewayCertificateID; // Buscamos el id del último certificado del gateway
         if(aux != 0){ // Si existe
             if((listGC[aux].expiryDate > block.timestamp)&&(!listGC[aux].revoked)&&(aux != 0)){ // Comprobamos que no esté caducado
@@ -186,7 +186,7 @@ contract Protocol public{
 
     //Función para saber el idSC del certificado vigente del sensor de entrada sin necesidad del idG
     function getSensorCertificateID(uint16 idS_) public view returns (uint16 idSC_){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         
         uint16 aux = listS[idS_].sensorCertificateID; // Buscamos el id del último certificado del sensor
         if(aux != 0){ // Si existe
@@ -202,7 +202,7 @@ contract Protocol public{
 
     //Función para comprobar si un gateway tiene un certificado válido vigente
     function checkGatewayCertificateStatus(uint16 idG_) public view returns(bool){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
 
         uint16 aux = getGatewayCertificateID(idG_); // Buscamos el id del último certificado del gateway
 
@@ -217,7 +217,7 @@ contract Protocol public{
     
     //Función para comprobar si un sensor tiene un certificado válido vigente
     function checkSensorCertificateStatus(uint16 idS_) public view returns(bool){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
 
         uint16 aux = getSensorCertificateID(idS_); // Buscamos el id del último certificado del sensor
 
@@ -231,7 +231,7 @@ contract Protocol public{
 
     // Función para revocar el útimo certificado de un sensor
     function revokeSensorCertificate(uint16 idS_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         uint16 aux = getSensorCertificateID(idS_); // Buscamos el id del último certificado del sensor
         if (aux!=0){ // Si existe
             listSC[aux].revoked = true; //Lo revocamos
@@ -241,7 +241,7 @@ contract Protocol public{
 
     // Función para revocar el certificado de un gateway y todos los certificados de sensores asociados a ese gateway
     function revokeGatewayCertificate(uint16 idG_) public{ 
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         uint16 aux1 = getGatewayCertificateID(idG_); // Buscamos el id del último certificado del gateway
         if (aux1 != 0){
             uint16[] memory aux = sensorsOfGateway[idG_].sensors;
@@ -258,7 +258,7 @@ contract Protocol public{
 
     // Función para borrar un sensor de la lista de sensores registrados
     function eraseSensor(uint16 idS_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listS[idS_].registered,"No existe o ya se ha borrado el sensor que se desea borrar.");  // Se comprueba que haya sensor a borrar
         revokeSensorCertificate(idS_); //Se revoca el certificado
         listS[idS_].registered = false; //Se pone como no registrado (se borra)
@@ -266,7 +266,7 @@ contract Protocol public{
 
     //Función para borrar un gateway de la lista de gateways registrados
     function eraseGateway(uint16 idG_) public{
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listG[idG_].registered,"No existe o ya se ha borrado el sensor que se desea borrar.");  // Se comprueba que haya gateway a borrar
         uint16[] memory auxArray = getGatewaysSensorList(idG_);
         for (uint i = 0; i<auxArray.length; i++){  // Se borran todos los sensores porque no se pueden reutilizar
@@ -279,98 +279,105 @@ contract Protocol public{
     }
 
     // Función para registrar una nueva alarma. Se limitan las pruebas a los parámetros de temperatura
-    function newWarning(address owner_, uint16 idS_, uint8 warningType_, uint16 duration_, int16 vAvg_,int16 maxTemp_, int16 minTemp_) public{
-        require(msg.sender == owner);
+    function newWarning(address owner_, uint16 idS_, uint8 warningType_, uint16 duration_, int16 vAvg_,int16 vMax_, int16 vMin_) public{
+        //require(msg.sender == owner);
         require(owner_==listGC[listG[getAssociatedGateway(idS_)].gatewayCertificateID].userAddress);
         require(checkSensorCertificateStatus(idS_),"El sensor no dispone de certificado valido."); // Comprobar que exista un certificado del Sensor
         require(warningType_ <= uint8(WarningType.discon),"El tipo de alerta introducito no es correcto.");
         uint16 idSC_ = listS[idS_].sensorCertificateID;
         totalW = totalW + 1;
-        if (warningType_ == 0){
-            int16[] memory aux = new int16[](0); // Variable auxiliar para crear un array vacío
-            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,false,duration_,aux,maxTemp_,minTemp_); //Se crea un objeto temporal creando la estructura del gateway (temperatura)
+        int16[] memory aux = new int16[](0); // Variable auxiliar para crear un array vacío
+        int16[] memory aux1 = new int16[](0); // Variable auxiliar para crear un array vacío
+        int16[] memory aux2 = new int16[](0); // Variable auxiliar para crear un array vacío
+        if ((warningType_ == 0)||(warningType_ == 1)){ // Temperatura o humedad
+            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,false,duration_,aux,aux1,aux2); //Se crea un objeto temporal creando la estructura del warning (temperatura)
             listW[totalW] = newWarn; //Se añade al mapeo con el índice deseado
             (listW[totalW].vAvg).push(vAvg_); //Se añade el valor medio medido
-        } else if (warningType_ == 1){
-            int16[] memory aux = new int16[](0); // Variable auxiliar para crear un array vacío
-            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,false,duration_,aux,-100,-100); //Se crea un objeto temporal creando la estructura del gateway (humedad)
+            (listW[totalW].vMin).push(vMin_); //Se añade el valor medio medido
+            (listW[totalW].vMax).push(vMax_); //Se añade el valor medio medido
+        } else if ((warningType_ == 2)||(warningType_ == 3)){ // Luz o movimiento
+            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,true,duration_,aux,aux1,aux2); //Se crea un objeto temporal creando la estructura del warning (luz)
             listW[totalW] = newWarn; //Se añade al mapeo con el índice deseado
-            (listW[totalW].vAvg).push(vAvg_); //Se añade el valor medio medido
-        } else if (warningType_ == 2){
-            int16[] memory aux = new int16[](0); // Variable auxiliar para crear un array vacío
-            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,true,duration_,aux,-100,-100); //Se crea un objeto temporal creando la estructura del gateway (luz)
-            listW[totalW] = newWarn; //Se añade al mapeo con el índice deseado
-            (listW[totalW].vAvg).push(vAvg_); //Se añade el valor medio medido
-        } else if (warningType_ == 3){
-            int16[] memory aux = new int16[](0); // Variable auxiliar para crear un array vacío
-            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,true,duration_,aux,-100,-100); //Se crea un objeto temporal creando la estructura del gateway (movimiento)
-            listW[totalW] = newWarn; //Se añade al mapeo con el índice deseado
-            (listW[totalW].vAvg).push(vAvg_); //Se añade el valor medio medido
-        } else{
-            int16[] memory aux = new int16[](0); // Variable auxiliar para crear un array vacío
-            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,true,0,aux,-100,-100); //Se crea un objeto temporal creando la estructura del gateway (desconexión)
+            (listW[totalW].vMax).push(vMax_); //Se añade el valor medio medido
+        } else{ // Desconexión
+            Warning memory newWarn = Warning(block.timestamp,WarningType(warningType_),idSC_,true,0,aux,aux1,aux2); //Se crea un objeto temporal creando la estructura del warning (desconexión)
             listW[totalW] = newWarn; //Se añade al mapeo con el índice deseado
         }
 
         (warningsOfSensor[idS_].warnings).push(totalW); //Se añade el warnings a la lista de warnings del sensor correspondiente
     
-        uint aux1 = listSC[idSC_].idM; // Variable auxiliar para poder acceder al id de la medicina
+        uint auxMedId = listSC[idSC_].idM; // Variable auxiliar para poder acceder al id de la medicina
 
         uint16 idG = getAssociatedGateway(idS_); // Variable que se usa en processWarning() para determinar el usuario a quien enviar la notificación
 
-        processWarning(warningType_,aux1,totalW, idG);
+        processWarning(warningType_,auxMedId,totalW, idG);
         
     }
 
     // Función para añadir un nuevo valor a los warnings de temperatura y humedad
 
-    function updateWarning(address owner_,uint16 idW_, uint16 idS_, uint8 warningType_, uint16 idSC_, uint16 duration_, int16 vAvg_,int16 maxTemp_, int16 minTemp_) public{
-        require(msg.sender == owner);
+    function updateWarning(address owner_,uint16 idW_, uint16 idS_, uint8 warningType_, uint16 idSC_, uint16 duration_, int16 vAvg_,int16 vMax_, int16 vMin_) public{
+        //require(msg.sender == owner);
         require(owner_==listGC[listG[getAssociatedGateway(idS_)].gatewayCertificateID].userAddress);
         require(checkSensorCertificateStatus(idS_),"El sensor no dispone de certificado activo."); // Comprobar que exista un certificado del Sensor
         require(warningType_ <= uint8(WarningType.hum),"El tipo de alerta introducito no es el correcto");
         require(!listW[idW_].closed);
         require(listW[idW_].idSC == idSC_);
-        listW[idW_].duration = duration_;
-        (listW[idW_].vAvg).push(vAvg_);
-        uint aux = listSC[idSC_].idM; // Variable auxiliar para poder acceder al id de la medicina
-        if (warningType_ == 1){
-            listW[idW_].minTemp = minTemp_;
-            listW[idW_].maxTemp = maxTemp_;
+        
+        uint auxMedId = listSC[idSC_].idM; // Variable auxiliar para poder acceder al id de la medicina
+        
+        if ((warningType_ == 0)||(warningType_ == 1)){ // Temperatura o humedad
+            listW[idW_].duration = duration_;
+            (listW[totalW].vAvg).push(vAvg_); //Se añade el valor medio medido
+            (listW[totalW].vMin).push(vMin_); //Se añade el valor medio medido
+            (listW[totalW].vMax).push(vMax_); //Se añade el valor medio medido
         }
         
         uint16 idG = getAssociatedGateway(idS_); // Variable que se usa en processWarning() para determinar el usuario a quien enviar la notificación
 
-        processWarning(warningType_,aux,idW_,idG);
+        processWarning(warningType_,auxMedId,idW_,idG);
     }
     
     // Función de procesado de los warnings 
 
     function processWarning(uint8 warningType_, uint idM_,uint16 idW_, uint16 idG_) public {
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         bool decision = false;
         Warning memory auxWarning = listW[idW_];
-        if (warningType_ == 1 ){ // Temperatura
-            int16 minTemp = medicinesContract.getMedicineMinTimeParam(idM_);
-            int16 maxTemp = medicinesContract.getMedicineMaxTimeParam(idM_);
-            int16 minRecTemp = medicinesContract.getMedicineMinRecTimeParam(idM_);
-            int16 maxRecTemp = medicinesContract.getMedicineMaxRecTimeParam(idM_);
+
+        int16[] memory warningVMin = auxWarning.vMin; // Extraemos los datos del warning (valor mínimo, valor máximo y valor medio)
+        int16[] memory warningVMax = auxWarning.vMax;
+        int16[] memory warningVAvg = auxWarning.vAvg;
+
+        if (warningType_ == 0 ){ // Temperatura
+
+            int16 vMin = medicinesContract.getMedicineMinTempParam(idM_); // Recogemos los parámetros de la medicina
+            int16 vMax = medicinesContract.getMedicineMaxTempParam(idM_);
+            int16 minRecTemp = medicinesContract.getMedicineMinRecTempParam(idM_);
+            int16 maxRecTemp = medicinesContract.getMedicineMaxRecTempParam(idM_);
             
-            if ((minTemp < auxWarning.minTemp)||(maxTemp > auxWarning.maxTemp)){
+            if ((vMin > warningVMin[warningVMin.length - 1])||(vMax < warningVMax[warningVMax.length - 1])){ // Si el valor mínimo o máximo ha sobrepasado el umbral permitido, se tira la medicina
                 decision = true;
-            }else if (((minRecTemp < auxWarning.minTemp)||(maxRecTemp > auxWarning.maxTemp))&&(auxWarning.duration > 1814400)){
+            }else if ((auxWarning.duration > 1814400)&&((warningVAvg[warningVAvg.length - 1]<minRecTemp)||(warningVAvg[warningVAvg.length - 1]>maxRecTemp))){ // Si el valor medio registrado ha estado fuera de los rangos recomendados más de 21 días, se tira la medicina
                 decision = true;
             }
 
-        }else if (warningType_ == 2){ // Humedad
-            //uint8 minHum = medicinesContract.getMedicineMinHumParam(idM_);
-            //uint8 maxHum = medicinesContract.getMedicineMaxHumParam(idM_);
-            decision = decisionAlgorithm1();
+        }else if (warningType_ == 1){ // Humedad
+            int16 vMin = medicinesContract.getMedicineMinHumParam(idM_);
+            int16 vMax = medicinesContract.getMedicineMaxHumParam(idM_);
+            int16 minRecHum = medicinesContract.getMedicineMinRecHumParam(idM_);
+            int16 maxRecHum = medicinesContract.getMedicineMaxRecHumParam(idM_);
+            
+            if ((vMin > warningVMin[warningVMin.length - 1])||(vMax < warningVMax[warningVMax.length - 1])){ // Si el valor mínimo o máximo ha sobrepasado el umbral permitido, se tira la medicina
+                decision = true;
+            }else if ((auxWarning.duration > 1814400)&&((warningVAvg[warningVAvg.length - 1]<minRecHum)||(warningVAvg[warningVAvg.length - 1]>maxRecHum))){ // Si el valor medio registrado ha estado fuera de los rangos recomendados más de 21 días, se tira la medicina
+                decision = true;
+            }
 
-        } else{ // Otros casos
-            //uint8 light = medicinesContract.getMedicineLightParam(idM_);
-            //uint8 movement = medicinesContract.getMedicineMovementParam(idM_);
-            decision = decisionAlgorithm1();
+        } else{ // En los casos de luz, movimiento y desconexión, se ejecuta un algoritmo determinado
+            //int16 light = medicinesContract.getMedicineLightParam(idM_);
+            //int16 movement = medicinesContract.getMedicineMovementParam(idM_);
+            decision = medicinesContract.decisionAlgorithm(); // Placeholder del algoritmo de decisión de las medicinas para luz, movimiento y desconexión
         }
 
 
@@ -384,10 +391,10 @@ contract Protocol public{
 
     }
 
-    // Placeholder del algoritmo de decisión de las medicinas
+    // Placeholder del algoritmo de decisión de las medicinas para luz, movimiento y desconexión. Debería ir en el contrato de medicinas.
 
     function decisionAlgorithm1() public pure returns(bool){
-        return true;
+        return true; // Por defecto, siempre devuelve true
     }
 
     // Subprotocolo 3
@@ -395,31 +402,31 @@ contract Protocol public{
 
     // Información gateway
     function getGatewayData(uint16 idG_) public view returns(bool, bytes8, bytes6, bytes32, bytes32){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return(listG[idG_].registered,listG[idG_].devEui,listG[idG_].mac,listG[idG_].pubKeyL,listG[idG_].pubKeyR);
     }
 
     // Información sensor
     function getSensorData(uint16 idS_) public view returns(bool, bytes6, bytes32, bytes32){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return(listS[idS_].registered,listS[idS_].mac,listS[idS_].pubKeyL,listS[idS_].pubKeyR);
     }
 
     // Información certificado gateway
     function getGatewayCertificateData(uint16 idGC_) public view returns(uint, bool, uint16, address){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return(listGC[idGC_].expiryDate,listGC[idGC_].revoked,listGC[idGC_].idG,listGC[idGC_].userAddress);
     }
 
     // Información certificado sensor
     function getSensorCertificateData(uint16 idSC_) public view returns(uint, bool, uint16, uint16, uint256){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return(listSC[idSC_].expiryDate,listSC[idSC_].revoked,listSC[idSC_].idG,listSC[idSC_].idS,listSC[idSC_].idM);
     }
 
     // Información gateway asociado a sensor
     function getAssociatedGateway(uint16 idS_) public view returns(uint16){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         require(listS[idS_].registered == true, "No existe sensor registrado.");
 
         uint16 aux = listS[idS_].sensorCertificateID;
@@ -430,25 +437,25 @@ contract Protocol public{
 
     // Información de alarma
     function getWarningData(uint16 idW_) public view returns(uint, WarningType, uint, bool, uint16, int16[] memory){
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return(listW[idW_].date,listW[idW_].warningType,listW[idW_].idSC,listW[idW_].closed,listW[idW_].duration,listW[idW_].vAvg);
     }
 
     // Información sobre sensores asociados a un gateway
     function getGatewaysSensorList(uint16 idG_) public view returns (uint16[] memory) {
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return sensorsOfGateway[idG_].sensors;
     }
 
     // Información sobre alarmas asociadas a un sensor
     function getSensorsWarningList(uint16 idS_) public view returns (uint16[] memory) {
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         return warningsOfSensor[idS_].warnings;
     }
 
     // Información sobre alarmas asociadas a un sensor producidas en un periodo de tiempo determinado
     function getSensorsWarningListForTimePeriod(uint16 idS_, uint startT_, uint endT_) public view returns (uint16[] memory) {
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         uint16[] memory warnings = warningsOfSensor[idS_].warnings;
         uint16[] memory auxWarnings = new uint16[](0); // Inicializar el array con longitud cero
 

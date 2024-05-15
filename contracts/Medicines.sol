@@ -25,12 +25,12 @@ contract Medicines{
         int16 minRecTemp; // Temperatura mínima recomendada para la medicina
         int16 maxRecTemp; // Temperatura máxima recomendada para la medicina
         int16 maxTemp; // Temperatura máxima que la medicina puede soportar 
-        uint8 minHum; // Humedad mínima que la medicina puede resistir
-        uint8 minRecHum; // Humedad mínima recomendada para la medicina 
-        uint8 maxRecHum; // Humedad máxima recomendada para la medicina (
-        uint8 maxHum; // Humedad máxima que la medicina puede resistir (
-        uint8 light; // Intensidad de luz máxima recomendada para la medicina
-        uint8 movement; // Aceleración máxima recomendada para la medicina
+        int16 minHum; // Humedad mínima que la medicina puede resistir
+        int16 minRecHum; // Humedad mínima recomendada para la medicina 
+        int16 maxRecHum; // Humedad máxima recomendada para la medicina (
+        int16 maxHum; // Humedad máxima que la medicina puede resistir (
+        int16 light; // Intensidad de luz máxima recomendada para la medicina
+        int16 movement; // Aceleración máxima recomendada para la medicina
         uint index; // Índice de la medicina en el mapeo, usado para llevar control de todas las medicinas que hay registradas
     }
 
@@ -44,18 +44,22 @@ contract Medicines{
         int16 minRecTemp_,
         int16 maxRecTemp_,
         int16 maxTemp_,
-        uint8 minHum_,
-        uint8 minRecHum_,
-        uint8 maxRecHum_,
-        uint8 maxHum_,
-        uint8 light_,
-        uint8 movement_) public{
+        int16 minHum_,
+        int16 minRecHum_,
+        int16 maxRecHum_,
+        int16 maxHum_,
+        int16 light_,
+        int16 movement_) public{
             
 
             listM[totalMedicines] = Medicine(name_,minTemp_,minRecTemp_,maxRecTemp_,maxTemp_,minHum_,minRecHum_,maxRecHum_,maxHum_,light_,movement_,totalMedicines);
 
             totalMedicines = totalMedicines + 1;
 
+    }
+
+    function decisionAlgorithm() public pure returns(bool){
+        return true;
     }
 
 
@@ -65,43 +69,43 @@ contract Medicines{
         return (listM[idM_].name);
     }
 
-    function getMedicineMinTimeParam(uint idM_) public view returns(int16){
+    function getMedicineMinTempParam(uint idM_) public view returns(int16){
         return (listM[idM_].minTemp);
     }
 
-    function getMedicineMaxTimeParam(uint idM_) public view returns(int16){
+    function getMedicineMaxTempParam(uint idM_) public view returns(int16){
         return (listM[idM_].maxTemp);
     }
 
-    function getMedicineMinRecTimeParam(uint idM_) public view returns(int16){
+    function getMedicineMinRecTempParam(uint idM_) public view returns(int16){
         return (listM[idM_].minRecTemp);
     }
 
-    function getMedicineMaxRecTimeParam(uint idM_) public view returns(int16){
+    function getMedicineMaxRecTempParam(uint idM_) public view returns(int16){
         return (listM[idM_].maxRecTemp);
     }
 
-    function getMedicineMinHumParam(uint idM_) public view returns(uint8){
+    function getMedicineMinHumParam(uint idM_) public view returns(int16){
         return (listM[idM_].minHum);
     }
 
-    function getMedicineMinRecHumParam(uint idM_) public view returns(uint8){
+    function getMedicineMinRecHumParam(uint idM_) public view returns(int16){
         return (listM[idM_].minRecHum);
     }
 
-    function getMedicineMaxRecHumParam(uint idM_) public view returns(uint8){
+    function getMedicineMaxRecHumParam(uint idM_) public view returns(int16){
         return (listM[idM_].maxRecHum);
     }
 
-    function getMedicineMaxHumParam(uint idM_) public view returns(uint8){
+    function getMedicineMaxHumParam(uint idM_) public view returns(int16){
         return (listM[idM_].maxHum);
     }
 
-    function getMedicineLightParam(uint idM_) public view returns(uint8){
+    function getMedicineLightParam(uint idM_) public view returns(int16){
         return (listM[idM_].light);
     }
 
-    function getMedicineMovementParam(uint idM_) public view returns(uint8){
+    function getMedicineMovementParam(uint idM_) public view returns(int16){
         return (listM[idM_].movement);
     }
 
